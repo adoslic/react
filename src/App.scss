@@ -1,0 +1,65 @@
+.justify-content-md-center{
+    //border: solid red 1px;
+    
+    .inputField{
+        height: 40px;
+    }
+    /*.searchBar{
+        //border: solid red 1px; 
+        width: 100%;
+        height: 50px;
+        padding-left: 15px;
+        font-size: 25px;
+    }*/
+    .btn{
+        border-radius: 0;
+    }
+    .borderRadius{
+        border-radius: 0 .25rem .25rem 0;
+    }
+    #dropdown-item-button, #dropdown-item-button2{
+        width: 100%;
+        //height: 50px!important;
+    }
+    .icon{
+        width: 100%;
+        //height: 50px;
+        //margin-top: 10px;
+        //border: solid red 1px;
+        display: flex;
+        
+    }
+    .material-icons.md-dark{
+        margin: auto;
+        //margin-top: 5px;
+        vertical-align: middle;
+    }
+}
+.noPadding{
+    padding: 0;
+    margin: 0;
+}
+.article{
+    margin-top: 10px;
+}
+.imgContainer{
+        width: 100%;
+        height: 200px;
+        //border: solid red 1px;
+        //background-image: url('../src/img/nature.jpg');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+}
+.card{
+    width: 100%;
+}
+.card-title{
+    height: 25px;
+    overflow: hidden;
+}
+.card-text{
+    height: 70px;
+    //white-space: nowrap;
+    overflow: hidden;
+}
