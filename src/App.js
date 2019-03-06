@@ -17,8 +17,10 @@ import FormControl from 'react-bootstrap/FormControl';
 // import Card from 'react-bootstrap/Card';
 // import Image from 'react-bootstrap/Image';
 // import Search from '../src/img/nature.jpg';
+//import swal from 'sweetalert';
 
 import ArticleCard from './components/ArticleCard'
+import Modal from './components/Modal/Modal';
 
 library.add(faIgloo)
 class App extends Component {
@@ -30,7 +32,9 @@ class App extends Component {
       articles: [],
       inputSearch: '',
       country: '',
-      category: ''
+      category: '',
+      search: false,
+      isShowing: false
     };
   }
 
@@ -46,7 +50,7 @@ filterSearch = (inputSearch='', country='', category='') => {
             isLoaded: true,
             articles: result.articles
           });
-          console.log(result);
+          //console.log(result);
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -89,29 +93,52 @@ filterSearch = (inputSearch='', country='', category='') => {
   }
   
   handleClick = () => {
-    this.filterSearch(this.state.inputSearch, this.state.country, this.state.category);
+    if(this.state.search){
+      this.filterSearch(this.state.inputSearch, this.state.country, this.state.category);
+    }
+    else{
+      this.setState({
+        isShowing: true
+      });
+      //swal("Error!", "You need to enter some parametar to search!", "error");
+      //alert("You need to enter some parametar to search!");
+    }
+  }
+  handleHover = () =>{
+    /*if(this.state.search){
+      console.log("pointer");
+      
+    }
+    else{
+      console.log("not-allowed");
+    }*/
+    console.log("test");
   }
 
   removeInputs = () =>{
     this.setState({
       inputSearch: '',
       country: '',
-      category: ''
+      category: '',
+      search: false
     });
   }
 
   updateInputValue = (event) =>{
-    //event.preventDefault();
+    
     this.setState({
-      inputSearch: event.target.value
+      inputSearch: event.target.value,
+      search: true
     });
+    if(event.target.value=='') this.setState({search: false})
     //console.log(this.state.inputSearch);
   }
 
   changeCountry = (event) =>{
     //event.preventDefault();
     this.setState({
-      country: event.target.value
+      country: event.target.value,
+      search: true
     });
     //console.log(event);
     //console.log(event.target.value);
@@ -119,15 +146,40 @@ filterSearch = (inputSearch='', country='', category='') => {
   changeCategory = (event) =>{
     //event.preventDefault();
     this.setState({
-      category: event.target.value
+      category: event.target.value,
+      search: true
     });
     //console.log(event);
     //console.log(event.target.value);
   }
+
+  openModalHandler = () => {
+    this.setState({
+        isShowing: true
+    });
+}
+
+  closeModalHandler = () => {
+    this.setState({
+        isShowing: false
+    });
+  }
+
   render() {
 
     return (
       <div className="App">
+      { this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null }
+
+    {/* <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button> */}
+
+    <Modal
+        className="modal"
+        show={this.state.isShowing}
+        
+        close={this.closeModalHandler}>
+          You need to enter some parametar to search!
+    </Modal>
         <Container>
           <Row className="justify-content-md-center">
             <Col sm={12}>
@@ -238,9 +290,15 @@ filterSearch = (inputSearch='', country='', category='') => {
 
                 <Button 
                   onClick={this.handleClick}
-                  className="search"
+                  //className={this.state.search ? 'hover' : null}
+                  //className="search"
                   variant="outline-secondary"
                 >
+                {
+                  // (!this.state.search)?
+                  // {"cursor": "not-allowed"}:
+                  // {"cursor": "pointer"}
+                }
                   <MaterialIcon 
                     icon="search"
                   />
@@ -266,6 +324,7 @@ filterSearch = (inputSearch='', country='', category='') => {
           }
           {/* <ArticleCard article={this.state.articles && this.state.articles.length > 0 && this.state.articles[0]}/> */}
         </Container>
+                
       </div>
     );
     

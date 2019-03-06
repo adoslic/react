@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import {Row, Col, Button, Card} from 'react-bootstrap'
-import slika from '../../img/imgNotFound.png'
+import slika from '../../Img/imgNotFound.png'
 
 class ArticleCard extends Component {
   constructor(props) {
     super(props);
     //console.log(props);
   }
-  readArticle = () =>{
+  readArticle = () => {
       const url = this.props.article.url;
       window.open(url, '_self');
   }
