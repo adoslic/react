@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Row, Col, Button, Card} from 'react-bootstrap'
-import slika from '../../Img/imgNotFound.png'
+import slika from '../../img/imgNotFound.png'
 
 class ArticleCard extends Component {
   constructor(props) {
